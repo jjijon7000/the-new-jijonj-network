@@ -49,7 +49,7 @@ export async function GET() {
       .slice(0, 1)
       .map((event) => {
         const repo = event.repo.name;
-        const createdAt = new Date(event.created_at);
+        const createdAt = new Date(event.created_at || Date.now());
         
         switch (event.type) {
           case 'PushEvent':
