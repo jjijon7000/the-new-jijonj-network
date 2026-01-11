@@ -9,13 +9,6 @@ export async function GET() {
     const installationId = process.env.GITHUB_INSTALLATION_ID;
     const username = process.env.GITHUB_USERNAME;
 
-    console.log('Environment check:', {
-      hasAppId: !!appId,
-      hasPrivateKey: !!privateKey,
-      hasInstallationId: !!installationId,
-      hasUsername: !!username,
-    });
-
     if (!appId || !privateKey || !installationId || !username) {
       console.error('Missing configuration:', {
         appId: !!appId,
@@ -48,13 +41,11 @@ export async function GET() {
       per_page: 30,
     });
 
-    console.log('Total events fetched:', events.length);
-    console.log('Event types:', events.map(e => e.type));
 
     // Filter and format events
     const activities = events
       .filter((event) => {
-        return ['PushEvent', 'PullRequestEvent', 'IssuesEvent', 'CreateEvent'].includes(event.type);
+        return event.type && ['PushEvent', 'PullRequestEvent', 'IssuesEvent', 'CreateEvent'].includes(event.type);
       })
       .slice(0, 1)
       .map((event) => {
@@ -64,7 +55,6 @@ export async function GET() {
         switch (event.type) {
           case 'PushEvent':
             const payload = event.payload as any;
-            console.log('Full PushEvent:', JSON.stringify(event, null, 2));
             const commits = payload.size || payload.commits?.length || 1;
             return {
               type: 'commit',
