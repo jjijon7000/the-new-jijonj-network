@@ -1854,19 +1854,21 @@ const Windows7Desktop = () => {
         gap: '15px'
       }}>
         <img 
-          src="/images/win7pfp.jpg" 
-          alt="User" 
-          style={{
-            width: '40px',
-            height: '40px',
-            borderRadius: '4px',
-            objectFit: 'cover',
-            boxShadow: '0 2px 6px rgba(0,0,0,0.2)'
-          }}
-          onError={(e) => {
-            // Fallback if image doesn't exist
-            e.currentTarget.style.display = 'none';
-            e.currentTarget.nextElementSibling.style.display = 'flex';
+                src="/images/win7pfp.jpg" 
+                alt="User" 
+                style={{
+                  width: '40px',
+                  height: '40px',
+                  borderRadius: '4px',
+                  objectFit: 'cover',
+                  boxShadow: '0 2px 6px rgba(0,0,0,0.2)'
+                }}
+                onError={(e) => {
+                  // Fallback if image doesn't exist
+                  e.currentTarget.style.display = 'none';
+                  if (e.currentTarget.nextElementSibling) {
+        (e.currentTarget.nextElementSibling as HTMLElement).style.display = 'flex';
+      }
           }}
         />
         <div style={{
