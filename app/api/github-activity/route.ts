@@ -41,7 +41,6 @@ export async function GET() {
       per_page: 30,
     });
 
-
     // Filter and format events
     const activities = events
       .filter((event) => {
@@ -95,8 +94,6 @@ export async function GET() {
         }
       })
       .filter(Boolean);
-
-    console.log('Filtered activities:', activities.length);
 
     return NextResponse.json({ activities });
   } catch (error) {
