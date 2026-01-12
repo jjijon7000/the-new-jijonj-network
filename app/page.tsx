@@ -1017,7 +1017,7 @@ const Windows7Desktop = () => {
       name:'this website',
       technologies: 'react, typescript, next.js, tailwindcss, vercel',
       date: 'jan. 2026',
-      link: 'https://github.com/jjijon7000/jjijon-network',
+      link: 'https://github.com/jjijon7000/the-new-jijonj-network',
       description: [
         '- built a personal portfolio website using react, typescript, and next.js with a focus on clean design and performance',
         '- integrated the github api to dynamically fetch and display project and repository data',
