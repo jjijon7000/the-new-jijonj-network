@@ -2007,7 +2007,7 @@ const Windows7Desktop = () => {
                   <li 
                     role="menuitem" 
                     tabIndex={0}
-                    onClick={() => { window.open('https://github.com/yourusername', '_blank'); setIsStartMenuOpen(false); setStartMenuSearch(''); }}
+                    onClick={() => { window.open('https://github.com/jjijon7000', '_blank'); setIsStartMenuOpen(false); setStartMenuSearch(''); }}
                     style={{ cursor: 'pointer', paddingLeft: '28px' }}
                     onMouseEnter={(e) => e.currentTarget.style.background = 'rgba(100,150,255,0.15)'}
                     onMouseLeave={(e) => e.currentTarget.style.background = 'transparent'}
