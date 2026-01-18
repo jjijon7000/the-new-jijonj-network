@@ -1227,13 +1227,13 @@ const Windows7Desktop = () => {
           </div>
           <div className="desktop-icon-label">recycle bin</div>
         </div>
-        <div id="icon-github" className="desktop-icon" style={{ position: 'absolute', top: 16, left: 102, zIndex: 10, pointerEvents: 'auto', cursor: 'default' }} onDoubleClick={() => window.open('https://www.linkedin.com/in/julio-jijon-jarquin/', '_blank')}>
+        <div id="icon-github" className="desktop-icon" style={{ position: 'absolute', top: 16, left: 102, zIndex: 10, pointerEvents: 'auto', cursor: 'default' }} onDoubleClick={() => window.open('https://github.com/jjijon7000', '_blank')}>
           <div className="desktop-icon-image">
             <img src="/images/githublogo7.png" alt="GitHub" style={{ width: '100%', height: '100%', objectFit: 'contain', pointerEvents: 'none' }} />
           </div>
           <div className="desktop-icon-label">my github</div>
         </div>
-        <div id="icon-linkedin" className="desktop-icon" style={{ position: 'absolute', top: 120, left: 102, zIndex: 10, pointerEvents: 'auto', cursor: 'default' }}>
+        <div id="icon-linkedin" className="desktop-icon" style={{ position: 'absolute', top: 120, left: 102, zIndex: 10, pointerEvents: 'auto', cursor: 'default' }} onDoubleClick={() => window.open('https://www.linkedin.com/in/julio-jijon-jarquin/', '_blank')}>
           <div className="desktop-icon-image">
             <img src="/images/linkedin7logo.png" alt="LinkedIn" style={{ width: '100%', height: '100%', objectFit: 'contain', pointerEvents: 'none' }} />
           </div>
