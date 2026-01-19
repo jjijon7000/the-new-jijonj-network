@@ -1107,7 +1107,7 @@ const Windows7Desktop = () => {
       company: 'Walters State Community College',
       period: 'Aug. 2022 – May 2024',
       location: 'Morristown, TN',
-      description: 'interned at Berea Colleges\' Software Development Team',
+      description: 'did it stuff',
       responsibilities: [
         'Maintained and supported 150+ hardware and software systems, ensuring operational reliability and timely issue resolution.',
         'Assisted IT staff in managing 200+ inventory items and logging assets for accurate resource tracking',
