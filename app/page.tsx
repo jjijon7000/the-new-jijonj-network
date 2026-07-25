@@ -53,26 +53,9 @@ const MinimalistWallpaper = () => {
         direction={90}
       />
       
-      {/* Text Content - Bottom Right */}
-      <div style={{
-        position: 'absolute',
-        bottom: '140px',
-        right: '20px',
-        left: '20px',
-        fontFamily: "'CenturyGothic', 'Century Gothic', 'Apple Gothic', sans-serif, Arial, 'Trebuchet MS', verdana",
-        color: 'white',
-        zIndex: 1,
-        textAlign: 'right',
-        animation: 'fadeIn 2s ease-in forwards',
-        opacity: 0
-      }}>
-        <div style={{
-          fontSize: '4rem',
-          fontWeight: 300,
-          margin: '0 0 20px 0',
-          letterSpacing: '2px',
-          lineHeight: '130%'
-        }}>
+      {/* Text Content - Bottom Right (scales / relocates via .brand-text CSS) */}
+      <div className="brand-text">
+        <div className="brand-name">
           <ShinyText
             text="Julio Jijon"
             speed={2}
@@ -85,15 +68,7 @@ const MinimalistWallpaper = () => {
             pauseOnHover={false}
           />
         </div>
-        <div style={{
-          fontSize: '1.4rem',
-          fontWeight: 300,
-          margin: 0,
-          marginLeft: 'auto',
-          maxWidth: '500px',
-          lineHeight: '130%',
-          minHeight: '2rem'
-        }}>
+        <div className="brand-title">
           <DecryptedText
             key={currentTitleIndex}
             text={titles[currentTitleIndex]}
@@ -1270,142 +1245,118 @@ const Windows7Desktop = () => {
           <div className="desktop-icon-label">my gallery</div>
         </div>
         
-        {/* GitHub Activity Widget */}
-        <GitHubActivity />
+        {/* Right-side widgets — flex stack scales with viewport (see .widget-stack) */}
+        <div className="widget-stack">
+          <GitHubActivity />
 
-        {/* Desktop Music Widget */}
-        <div id="desktop-music-widget" className="window glass active" style={{ position: 'absolute', top: '125px', right: '20px', width: '240px', height: 'auto', zIndex: 50, pointerEvents: 'auto' }}>
-          <div className="title-bar">
-            <div className="title-bar-text">soundcloud</div>
-          </div>
-          <div className="window-body" style={{ padding: '8px', fontFamily: 'Segoe UI, Tahoma, sans-serif' }}>
-            {/* Track Info */}
-            <div id="desktop-mw-track" style={{ fontSize: '11px', lineHeight: '1.3', marginBottom: '8px', minHeight: '24px', color: '#000' }}>
-              <strong>Loading...</strong>
+          {/* Desktop Music Widget */}
+          <div id="desktop-music-widget" className="window glass active" style={{ height: 'auto' }}>
+            <div className="title-bar">
+              <div className="title-bar-text">soundcloud</div>
             </div>
-            
-            {/* Progress Bar */}
-            <div onClick={handleProgressBarClick} style={{ width: '100%', height: '5px', backgroundColor: 'rgba(0,0,0,0.3)', borderRadius: '3px', marginBottom: '3px', overflow: 'visible', cursor: 'pointer', position: 'relative' }}>
-              <div id="desktop-mw-progress-bar" style={{ height: '100%', width: '0%', backgroundColor: '#ff5500', borderRadius: '3px', pointerEvents: 'none', position: 'relative' }}>
-                <div style={{ position: 'absolute', right: '-6px', top: '50%', transform: 'translateY(-50%)', width: '12px', height: '12px', backgroundColor: '#ff5500', borderRadius: '50%', border: '2px solid #000', boxShadow: '0 2px 4px rgba(0,0,0,0.3)' }}></div>
+            <div className="window-body music-widget-body" style={{ padding: '8px', fontFamily: 'Segoe UI, Tahoma, sans-serif' }}>
+              <div id="desktop-mw-track" style={{ fontSize: '11px', lineHeight: '1.3', marginBottom: '8px', minHeight: '24px', color: '#000' }}>
+                <strong>Loading...</strong>
               </div>
-            </div>
-            
-            {/* Time Display */}
-            <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '9px', color: '#000', marginBottom: '8px', opacity: 0.7 }}>
-              <span>{formatTime(currentTime)}</span>
-              <span>{formatTime(duration)}</span>
-            </div>
-            
-            {/* Controls */}
-            <div style={{ display: 'flex', justifyContent: 'center', gap: '3px', marginBottom: '6px' }}>
-              <button onClick={previousTrack} style={{ flex: 1, padding: '4px 8px', fontSize: '12px', cursor: 'pointer', border: '1px solid #999999ff', borderRadius: '3px', backgroundColor: 'rgba(255,255,255,0.2)', color: '#000', minWidth: 0, maxWidth: '70px' }}>⏮️</button>
-              <button id="desktop-mw-play" onClick={togglePlayback} style={{ flex: 1, padding: '4px 10px', fontSize: '12px', cursor: 'pointer', border: '1px solid #999999ff', borderRadius: '3px', backgroundColor: '#ff5500', color: '#000', minWidth: 0, maxWidth: '80px' }}>▶️</button>
-              <button onClick={nextTrack} style={{ flex: 1, padding: '4px 8px', fontSize: '12px', cursor: 'pointer', border: '1px solid #999999ff', borderRadius: '3px', backgroundColor: 'rgba(255,255,255,0.2)', color: '#000', minWidth: 0, maxWidth: '70px' }}>⏭️</button>
-            </div>
-            
-            {/* Open in SoundCloud */}
-            <button id="desktop-mw-open" style={{ width: '100%', padding: '5px', fontSize: '11px', cursor: 'pointer', border: '1px solid #999999ff', borderRadius: '3px', backgroundColor: 'rgba(255,255,255,0.15)', color: '#000' }}>🔗 open in soundcloud</button>
-          </div>
-        </div>
 
-        {/* Tech Stack Widget - Desktop */}
-{/* Tech Stack Widget */}
-<div 
-  className="window glass active" 
-  style={{ 
-    // Conditional positioning logic
-    position: isMobile ? 'fixed' : 'absolute', 
-    top: isMobile ? '280px' : '315px', 
-    right: isMobile ? '10px' : '20px', 
-    width: isMobile ? '85%' : '240px',
-    maxWidth: isMobile ? '220px' : 'none',
-    
-    // Constant styles
-    height: 'auto', 
-    zIndex: 50, 
-    pointerEvents: 'auto' 
-  }}
->
-  <div className="title-bar">
-    <div className="title-bar-text">stuff i know</div>
-  </div>
-  <div 
-    className="window-body" 
-    style={{ 
-      padding: '10px', 
-      height: '80px', 
-      overflow: 'hidden', 
-      backgroundColor: 'rgba(255,255,255,0.95)', 
-      color: '#000' 
-    }}
-  >
-    <LogoLoop
-      logos={[
-        { node: <SiPython style={{ color: '#000' }} />, title: "Python", href: "https://www.python.org" },
-        { node: <SiCplusplus style={{ color: '#000' }} />, title: "C++", href: "https://isocpp.org" },
-        { node: <SiMysql style={{ color: '#000' }} />, title: "SQL", href: "https://www.mysql.com" },
-        { node: <SiVercel style={{ color: '#000' }} />, title: 'Vercel', href: "https://vercel.com/" },
-        { node: <SiJavascript style={{ color: '#000' }} />, title: "JavaScript", href: "https://developer.mozilla.org/en-US/docs/Web/JavaScript" },
-        { node: <SiTypescript style={{ color: '#000' }} />, title: "TypeScript", href: "https://www.typescriptlang.org" },
-        { node: <SiHtml5 style={{ color: '#000' }} />, title: "HTML", href: "https://developer.mozilla.org/en-US/docs/Web/HTML" },
-        { node: <SiCss3 style={{ color: '#000' }} />, title: "CSS", href: "https://developer.mozilla.org/en-US/docs/Web/CSS" },
-        { node: <SiGnubash style={{ color: '#000' }} />, title: "Bash", href: "https://www.gnu.org/software/bash/" },
-        { node: <SiGit style={{ color: '#000' }} />, title: "Git", href: "https://git-scm.com" },
-        { node: <SiLinux style={{ color: '#000' }} />, title: "Linux", href: "https://www.linux.org" },
-        { node: <SiDocker style={{ color: '#000' }} />, title: "Docker", href: "https://www.docker.com" },
-        { node: <SiFlask style={{ color: '#000' }} />, title: "Flask", href: "https://flask.palletsprojects.com" },
-        { node: <SiReact style={{ color: '#000' }} />, title: "React", href: "https://react.dev" },
-        { node: <SiNodedotjs style={{ color: '#000' }} />, title: "Node.js", href: "https://nodejs.org" },
-        { node: <SiNextdotjs style={{ color: '#000' }} />, title: "Next.js", href: "https://nextjs.org" },
-        { node: <SiTailwindcss style={{ color: '#000' }} />, title: "Tailwind CSS", href: "https://tailwindcss.com" },
-      ]}
-      speed={40}
-      direction="left"
-      logoHeight={40}
-      gap={30}
-      hoverSpeed={0}
-      scaleOnHover
-      fadeOut
-      fadeOutColor="rgba(255,255,255,0.95)"
-      ariaLabel="Technology stack"
-    />
-  </div>
-</div>
-
-        {/* Mobile Music Widget */}
-        <div id="mobile-music-widget" className="window glass active" style={{ position: 'fixed', top: '100px', right: '10px', width: '85%', maxWidth: '220px', height: 'auto', zIndex: 50, pointerEvents: 'auto', display: 'none' }}>
-          <div className="title-bar">
-            <div className="title-bar-text">soundcloud</div>
-          </div>
-          <div className="window-body" style={{ padding: '6px', fontFamily: 'Segoe UI, Tahoma, sans-serif' }}>
-            {/* Track Info */}
-            <div id="mobile-mw-track" style={{ fontSize: '10px', lineHeight: '1.3', marginBottom: '8px', minHeight: '26px', color: '#000' }}>
-              <strong>Loading...</strong>
-            </div>
-            
-            {/* Progress Bar */}
-            <div onClick={handleProgressBarClick} style={{ width: '100%', height: '5px', backgroundColor: 'rgba(0,0,0,0.3)', borderRadius: '3px', marginBottom: '4px', overflow: 'visible', cursor: 'pointer', position: 'relative' }}>
-              <div id="mobile-mw-progress-bar" style={{ height: '100%', width: '0%', backgroundColor: '#ff5500', borderRadius: '3px', pointerEvents: 'none', position: 'relative' }}>
-                <div style={{ position: 'absolute', right: '-5px', top: '50%', transform: 'translateY(-50%)', width: '10px', height: '10px', backgroundColor: '#ff5500', borderRadius: '50%', border: '2px solid #000', boxShadow: '0 1px 3px rgba(0,0,0,0.3)' }}></div>
+              <div onClick={handleProgressBarClick} style={{ width: '100%', height: '5px', backgroundColor: 'rgba(0,0,0,0.3)', borderRadius: '3px', marginBottom: '3px', overflow: 'visible', cursor: 'pointer', position: 'relative' }}>
+                <div id="desktop-mw-progress-bar" style={{ height: '100%', width: '0%', backgroundColor: '#ff5500', borderRadius: '3px', pointerEvents: 'none', position: 'relative' }}>
+                  <div style={{ position: 'absolute', right: '-6px', top: '50%', transform: 'translateY(-50%)', width: '12px', height: '12px', backgroundColor: '#ff5500', borderRadius: '50%', border: '2px solid #000', boxShadow: '0 2px 4px rgba(0,0,0,0.3)' }}></div>
+                </div>
               </div>
+
+              <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '9px', color: '#000', marginBottom: '8px', opacity: 0.7 }}>
+                <span>{formatTime(currentTime)}</span>
+                <span>{formatTime(duration)}</span>
+              </div>
+
+              <div style={{ display: 'flex', justifyContent: 'center', gap: '3px', marginBottom: '6px' }}>
+                <button onClick={previousTrack} style={{ flex: 1, padding: '4px 8px', fontSize: '12px', cursor: 'pointer', border: '1px solid #999999ff', borderRadius: '3px', backgroundColor: 'rgba(255,255,255,0.2)', color: '#000', minWidth: 0, maxWidth: '70px' }}>⏮️</button>
+                <button id="desktop-mw-play" onClick={togglePlayback} style={{ flex: 1, padding: '4px 10px', fontSize: '12px', cursor: 'pointer', border: '1px solid #999999ff', borderRadius: '3px', backgroundColor: '#ff5500', color: '#000', minWidth: 0, maxWidth: '80px' }}>▶️</button>
+                <button onClick={nextTrack} style={{ flex: 1, padding: '4px 8px', fontSize: '12px', cursor: 'pointer', border: '1px solid #999999ff', borderRadius: '3px', backgroundColor: 'rgba(255,255,255,0.2)', color: '#000', minWidth: 0, maxWidth: '70px' }}>⏭️</button>
+              </div>
+
+              <button id="desktop-mw-open" style={{ width: '100%', padding: '5px', fontSize: '11px', cursor: 'pointer', border: '1px solid #999999ff', borderRadius: '3px', backgroundColor: 'rgba(255,255,255,0.15)', color: '#000' }}>🔗 open in soundcloud</button>
             </div>
-            
-            {/* Time Display */}
-            <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '8px', color: '#000', marginBottom: '10px', opacity: 0.7 }}>
-              <span>{formatTime(currentTime)}</span>
-              <span>{formatTime(duration)}</span>
+          </div>
+
+          {/* Mobile Music Widget */}
+          <div id="mobile-music-widget" className="window glass active" style={{ height: 'auto', display: 'none' }}>
+            <div className="title-bar">
+              <div className="title-bar-text">soundcloud</div>
             </div>
-            
-            {/* Controls */}
-            <div style={{ display: 'flex', justifyContent: 'center', gap: '2px', marginBottom: '6px' }}>
-              <button onClick={previousTrack} style={{ flex: 1, padding: '2px 4px', fontSize: '10px', cursor: 'pointer', border: '1px solid #444', borderRadius: '3px', backgroundColor: 'rgba(255,255,255,0.2)', color: '#000', minWidth: 0, maxWidth: '60px' }}>⏮️</button>
-              <button id="mobile-mw-play" onClick={togglePlayback} style={{ flex: 1, padding: '2px 4px', fontSize: '10px', cursor: 'pointer', border: '1px solid #444', borderRadius: '3px', backgroundColor: '#ff5500', color: '#000', minWidth: 0, maxWidth: '70px' }}>▶️</button>
-              <button onClick={nextTrack} style={{ flex: 1, padding: '2px 4px', fontSize: '10px', cursor: 'pointer', border: '1px solid #444', borderRadius: '3px', backgroundColor: 'rgba(255,255,255,0.2)', color: '#000', minWidth: 0, maxWidth: '60px' }}>⏭️</button>
+            <div className="window-body music-widget-body" style={{ padding: '6px', fontFamily: 'Segoe UI, Tahoma, sans-serif' }}>
+              <div id="mobile-mw-track" style={{ fontSize: '10px', lineHeight: '1.3', marginBottom: '8px', minHeight: '26px', color: '#000' }}>
+                <strong>Loading...</strong>
+              </div>
+
+              <div onClick={handleProgressBarClick} style={{ width: '100%', height: '5px', backgroundColor: 'rgba(0,0,0,0.3)', borderRadius: '3px', marginBottom: '4px', overflow: 'visible', cursor: 'pointer', position: 'relative' }}>
+                <div id="mobile-mw-progress-bar" style={{ height: '100%', width: '0%', backgroundColor: '#ff5500', borderRadius: '3px', pointerEvents: 'none', position: 'relative' }}>
+                  <div style={{ position: 'absolute', right: '-5px', top: '50%', transform: 'translateY(-50%)', width: '10px', height: '10px', backgroundColor: '#ff5500', borderRadius: '50%', border: '2px solid #000', boxShadow: '0 1px 3px rgba(0,0,0,0.3)' }}></div>
+                </div>
+              </div>
+
+              <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '8px', color: '#000', marginBottom: '10px', opacity: 0.7 }}>
+                <span>{formatTime(currentTime)}</span>
+                <span>{formatTime(duration)}</span>
+              </div>
+
+              <div style={{ display: 'flex', justifyContent: 'center', gap: '2px', marginBottom: '6px' }}>
+                <button onClick={previousTrack} style={{ flex: 1, padding: '2px 4px', fontSize: '10px', cursor: 'pointer', border: '1px solid #444', borderRadius: '3px', backgroundColor: 'rgba(255,255,255,0.2)', color: '#000', minWidth: 0, maxWidth: '60px' }}>⏮️</button>
+                <button id="mobile-mw-play" onClick={togglePlayback} style={{ flex: 1, padding: '2px 4px', fontSize: '10px', cursor: 'pointer', border: '1px solid #444', borderRadius: '3px', backgroundColor: '#ff5500', color: '#000', minWidth: 0, maxWidth: '70px' }}>▶️</button>
+                <button onClick={nextTrack} style={{ flex: 1, padding: '2px 4px', fontSize: '10px', cursor: 'pointer', border: '1px solid #444', borderRadius: '3px', backgroundColor: 'rgba(255,255,255,0.2)', color: '#000', minWidth: 0, maxWidth: '60px' }}>⏭️</button>
+              </div>
+
+              <button id="mobile-mw-open" style={{ width: '100%', padding: '4px', fontSize: '9px', cursor: 'pointer', border: '1px solid #444', borderRadius: '3px', backgroundColor: 'rgba(255,255,255,0.15)', color: '#000' }}>🔗 open in soundcloud</button>
             </div>
-            
-            {/* Open in SoundCloud */}
-            <button id="mobile-mw-open" style={{ width: '100%', padding: '4px', fontSize: '9px', cursor: 'pointer', border: '1px solid #444', borderRadius: '3px', backgroundColor: 'rgba(255,255,255,0.15)', color: '#000' }}>🔗 open in soundcloud</button>
+          </div>
+
+          {/* Tech Stack Widget */}
+          <div className="window glass active" style={{ height: 'auto' }}>
+            <div className="title-bar">
+              <div className="title-bar-text">stuff i know</div>
+            </div>
+            <div
+              className="window-body tech-stack-body"
+              style={{
+                padding: '10px',
+                height: '80px',
+                overflow: 'hidden',
+                backgroundColor: 'rgba(255,255,255,0.95)',
+                color: '#000',
+              }}
+            >
+              <LogoLoop
+                logos={[
+                  { node: <SiPython style={{ color: '#000' }} />, title: "Python", href: "https://www.python.org" },
+                  { node: <SiCplusplus style={{ color: '#000' }} />, title: "C++", href: "https://isocpp.org" },
+                  { node: <SiMysql style={{ color: '#000' }} />, title: "SQL", href: "https://www.mysql.com" },
+                  { node: <SiVercel style={{ color: '#000' }} />, title: 'Vercel', href: "https://vercel.com/" },
+                  { node: <SiJavascript style={{ color: '#000' }} />, title: "JavaScript", href: "https://developer.mozilla.org/en-US/docs/Web/JavaScript" },
+                  { node: <SiTypescript style={{ color: '#000' }} />, title: "TypeScript", href: "https://www.typescriptlang.org" },
+                  { node: <SiHtml5 style={{ color: '#000' }} />, title: "HTML", href: "https://developer.mozilla.org/en-US/docs/Web/HTML" },
+                  { node: <SiCss3 style={{ color: '#000' }} />, title: "CSS", href: "https://developer.mozilla.org/en-US/docs/Web/CSS" },
+                  { node: <SiGnubash style={{ color: '#000' }} />, title: "Bash", href: "https://www.gnu.org/software/bash/" },
+                  { node: <SiGit style={{ color: '#000' }} />, title: "Git", href: "https://git-scm.com" },
+                  { node: <SiLinux style={{ color: '#000' }} />, title: "Linux", href: "https://www.linux.org" },
+                  { node: <SiDocker style={{ color: '#000' }} />, title: "Docker", href: "https://www.docker.com" },
+                  { node: <SiFlask style={{ color: '#000' }} />, title: "Flask", href: "https://flask.palletsprojects.com" },
+                  { node: <SiReact style={{ color: '#000' }} />, title: "React", href: "https://react.dev" },
+                  { node: <SiNodedotjs style={{ color: '#000' }} />, title: "Node.js", href: "https://nodejs.org" },
+                  { node: <SiNextdotjs style={{ color: '#000' }} />, title: "Next.js", href: "https://nextjs.org" },
+                  { node: <SiTailwindcss style={{ color: '#000' }} />, title: "Tailwind CSS", href: "https://tailwindcss.com" },
+                ]}
+                speed={40}
+                direction="left"
+                logoHeight={40}
+                gap={30}
+                hoverSpeed={0}
+                scaleOnHover
+                fadeOut
+                fadeOutColor="rgba(255,255,255,0.95)"
+                ariaLabel="Technology stack"
+              />
+            </div>
           </div>
         </div>
 
