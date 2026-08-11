@@ -17,8 +17,9 @@ declare global {
 
 const MinimalistWallpaper = () => {
   const titles = [
+    'software engineer',
     'full-stack developer',
-    'computer science teaching assistant',
+    'data structures teaching assistant lead',
     'music producer',
     'computer science student',
     'photographer'
@@ -373,11 +374,13 @@ const Windows7Desktop = () => {
   const [time, setTime] = useState(new Date());
   const [isAboutMeOpen, setIsAboutMeOpen] = useState(false);
   const [isExperienceOpen, setIsExperienceOpen] = useState(false);
+  const [isLeadershipOpen, setIsLeadershipOpen] = useState(false);
   const [isProjectsOpen, setIsProjectsOpen] = useState(false);
   const [isEmailOpen, setIsEmailOpen] = useState(false);
   const [isGalleryOpen, setIsGalleryOpen] = useState(false);
   const [isClosing, setIsClosing] = useState(false);
   const [isExperienceClosing, setIsExperienceClosing] = useState(false);
+  const [isLeadershipClosing, setIsLeadershipClosing] = useState(false);
   const [isProjectsClosing, setIsProjectsClosing] = useState(false);
   const [isEmailClosing, setIsEmailClosing] = useState(false);
   const [isGalleryClosing, setIsGalleryClosing] = useState(false);
@@ -386,12 +389,14 @@ const Windows7Desktop = () => {
   const [desktopOpacity, setDesktopOpacity] = useState(0);
   const [blackOverlay, setBlackOverlay] = useState(1);
   const [activeExpTab, setActiveExpTab] = useState('exp-1');
+  const [activeLeadershipTab, setActiveLeadershipTab] = useState('lead-1');
   const [activeProjectTab, setActiveProjectTab] = useState('proj-1');
   const [focusedWindow, setFocusedWindow] = useState<string | null>(null);
   const [isMobile, setIsMobile] = useState(false);
   const [isAboutMeMinimized, setIsAboutMeMinimized] = useState(false);
   const [isEmailMinimized, setIsEmailMinimized] = useState(false);
   const [isExperienceMinimized, setIsExperienceMinimized] = useState(false);
+  const [isLeadershipMinimized, setIsLeadershipMinimized] = useState(false);
   const [isProjectsMinimized, setIsProjectsMinimized] = useState(false);
   const [isGalleryMinimized, setIsGalleryMinimized] = useState(false);
   const [showWelcomeBalloon, setShowWelcomeBalloon] = useState(false);
@@ -913,6 +918,7 @@ const Windows7Desktop = () => {
     const linkedin = document.getElementById('icon-linkedin');
     const aboutMe = document.getElementById('icon-aboutme');
     const myExperience = document.getElementById('icon-myexperience');
+    const myLeadership = document.getElementById('icon-myleadership');
     const myProjects = document.getElementById('icon-myprojects');
     const email = document.getElementById('icon-email');
     const gallery = document.getElementById('icon-gallery');
@@ -921,6 +927,7 @@ const Windows7Desktop = () => {
     if (linkedin) dragElement(linkedin);
     if (aboutMe) dragElement(aboutMe);
     if (myExperience) dragElement(myExperience);
+    if (myLeadership) dragElement(myLeadership);
     if (myProjects) dragElement(myProjects);
     if (email) dragElement(email);
     if (gallery) dragElement(gallery);
@@ -939,6 +946,14 @@ const Windows7Desktop = () => {
     setTimeout(() => {
       setIsExperienceOpen(false);
       setIsExperienceClosing(false);
+    }, 300);
+  };
+
+  const handleCloseLeadership = () => {
+    setIsLeadershipClosing(true);
+    setTimeout(() => {
+      setIsLeadershipOpen(false);
+      setIsLeadershipClosing(false);
     }, 300);
   };
 
@@ -978,6 +993,10 @@ const Windows7Desktop = () => {
     setIsExperienceMinimized(true);
   };
 
+  const handleMinimizeLeadership = () => {
+    setIsLeadershipMinimized(true);
+  };
+
   const handleMinimizeProjects = () => {
     setIsProjectsMinimized(true);
   };
@@ -989,9 +1008,37 @@ const Windows7Desktop = () => {
   const projects = [
     {
       id: 'proj-1',
-      name:'this website',
+      name: 'ToxIQ',
+      technologies: 'Next.js, TypeScript, FastAPI, XGBoost, Gemini API',
+      date: 'Mar. 2026',
+      link: 'https://devpost.com/software/toxiq',
+      description: [
+        '- Winner, Medpace Sponsor Challenge — RevolutionUC 2026',
+        '- Built an AI-powered pharmacokinetic simulation platform predicting drug behavior from molecular structure using XGBoost trained on RDKit molecular descriptors',
+        '- Designed a FastAPI backend and Next.js frontend for drug simulation and comparison',
+        '- Integrated Gemini API to generate plain-language safety summaries'
+      ],
+      techStack: ['Next.js', 'TypeScript', 'FastAPI', 'XGBoost', 'Gemini API', 'RDKit']
+    },
+    {
+      id: 'proj-2',
+      name: 'SentinelAI',
+      technologies: 'Next.js, FastAPI, Gemini API, Snowflake, MongoDB',
+      date: 'Mar. 2026',
+      link: 'https://devpost.com/software/sentenielai',
+      description: [
+        '- Best Use of Snowflake API — VandyHacks 2026',
+        '- Built an autonomous SOC platform ingesting real-time security logs via Snowflake to detect credential compromise, geographic anomalies, and data exfiltration',
+        '- Engineered a full-stack pipeline with a Next.js dashboard, FastAPI backend, and Gemini API for AI-driven threat analysis',
+        '- Deployed on Railway with MongoDB as an incident memory store'
+      ],
+      techStack: ['Next.js', 'FastAPI', 'Gemini API', 'Snowflake', 'MongoDB', 'Railway']
+    },
+    {
+      id: 'proj-3',
+      name: 'this website',
       technologies: 'react, typescript, next.js, tailwindcss, vercel',
-      date: 'jan. 2026',
+      date: 'Jan. 2026',
       link: 'https://github.com/jjijon7000/the-new-jijonj-network',
       description: [
         '- built a personal portfolio website using react, typescript, and next.js with a focus on clean design and performance',
@@ -1001,32 +1048,30 @@ const Windows7Desktop = () => {
         '- deployed the site on vercel with continuous deployment tied to github'
       ],
       techStack: ['React', 'Typescript', 'TailwindCSS', 'Next.js', 'Vercel']
-
     },
     {
-      id: 'proj-2',
+      id: 'proj-4',
       name: 'Undertow Synthesizer',
       technologies: 'JUCE, C++',
       date: 'Jan. 2025',
       link: 'https://github.com/jjijon7000/undertow-synth',
       description: [
-        '- Designed and implemented a polyphonic software synthesizer using the JUCE framework and C++.',
-        '- Built core audio components including oscillators, ADSR envelope, LFO, and filters for sound shaping.',
-        '- Focused on real-time performance, memory management, and low-latency audio processing.',
-        '- Created an interactive GUI for real-time parameter control and plugin testing.',
-        '- Owned the project end-to-end, from system design to implementation and testing.'
+        '- Developed a polyphonic software synthesizer in C++ using JUCE with modular components: oscillators, envelopes, LFOs, and filters',
+        '- Implemented a real-time audio pipeline optimized for low latency and efficient memory usage across concurrent voice channels',
+        '- Created an interactive GUI for real-time parameter control and plugin testing',
+        '- Owned the project end-to-end, from system design to implementation and testing'
       ],
       techStack: ['JUCE', 'C++', 'Audio Processing', 'DSP', 'Real-time Systems']
     },
     {
-      id: 'proj-3',
+      id: 'proj-5',
       name: 'Python Learn Piano',
       technologies: 'Python',
       date: 'Dec. 2024',
       link: 'https://github.com/Berea-College-CSC-226/p01-final-project-jijonj',
       description: [
-        '- Designed a Python application with a focus on clean architecture, modular design, and maintainable code.',
-        '- Applied object-oriented programming principles to structure system components and manage application state.',
+        '- Designed a Python application with a focus on clean architecture, modular design, and maintainable code',
+        '- Applied object-oriented programming principles to structure system components and manage application state',
         '- Implemented reusable classes and input-handling logic, improving extensibility and long-term maintainability'
       ],
       techStack: ['Python', 'OOP', 'Software Architecture', 'Modular Design']
@@ -1036,59 +1081,73 @@ const Windows7Desktop = () => {
   const experiences = [
     {
       id: 'exp-1',
-      role: 'Computer Science Teaching Assistant',
-      company: 'Berea College',
-      period: 'Jan. 2025 – Present',
-      location: 'Berea, KY',
-      description: 'Teaching Assistant for CSC 226: Software Design and Implement, supporting 30+ students each semester.',
+      role: 'Software Engineer',
+      company: 'Centers for Medicare & Medicaid Services',
+      period: 'Jun. 2026 – Aug. 2026',
+      location: 'Washington, DC',
+      description: 'Engineered modernization work on Medicare enrollment tooling and contributed to the DSACMS open-source ecosystem.',
       responsibilities: [
-        'Reinforced core computer science fundamentals including object-oriented design, data structures, and algorithmic problem solving',
-        'Diagnosed and resolved 100+ logic, runtime, and design-related issues, strengthening debugging',
-        'Created 10+ supplementary guides and walkthroughs that reduced recurring coding errors by 25%',
-        'Collaborated with faculty to refine curriculum, increasing clarity and efficiency of programming instruction',
-        'Conducted 20+ mock technical interviews to assess students\' programming knowledge and problem-solving skills'
+        'Engineered the migration of a legacy Medicare Enrollment Dashboard—supporting over 70 million enrollees—from a proprietary platform to a modern, open-source stack (11ty, D3.js, USWDS), achieving vendor neutrality and improved long-term maintainability',
+        'Contributed to the DSACMS repository ecosystem by developing automated GitHub Actions workflows, resolving CI/CD integration issues, and standardizing metadata handling via API integrations',
+        'Integrated automated pipelines into the GitHub repository, enforcing code quality via Jest testing, HTML validation, and automated link checking on every pull request'
       ],
-      technologies: ['Python', 'Object-Oriented Design', 'Data Structures', 'Algorithms', 'Debugging'],
+      technologies: ['11ty', 'D3.js', 'USWDS', 'GitHub Actions', 'Jest', 'CI/CD', 'JavaScript'],
       achievements: [
-        'Reduced recurring coding errors by 25% through supplementary guides',
-        'Resolved 100+ technical issues across multiple semesters',
-        'Conducted 20+ mock technical interviews'
+        'Migrated a dashboard supporting 70M+ Medicare enrollees to an open-source stack',
+        'Standardized metadata handling and CI/CD across DSACMS repositories',
+        'Enforced code quality with automated testing and validation on every PR'
       ]
     },
     {
       id: 'exp-2',
-      role: 'Full-Stack Software Engineer Intern',
+      role: 'Data Structures Teaching Assistant Lead',
       company: 'Berea College',
-      period: 'Jun. 2025 – Aug. 2025',
+      period: 'Jan. 2025 – Present',
       location: 'Berea, KY',
-      description: 'Contributed to business-critical applications by resolving 20+ tracked issues using Git for version control within an agile development workflow.',
+      description: 'Lead TA mentoring peers on debugging and code review while coordinating lab schedules for consistent instruction.',
       responsibilities: [
-        'Collaborated with designers and engineers to ship features end-to-end, from feature planning to deployment',
-        'Developed and maintained user-facing features supporting internal workflows using JavaScript, HTML, and CSS',
-        'Designed and integrated RESTful APIs to support secure and reliable data exchange between client and server systems',
-        'Utilized Git for version control and Docker for containerization, ensuring reproducible and consistent development environments',
-        'Designed and implemented unit and integration tests, reducing deployment and runtime errors by 30%'
+        'Led a TA team, mentoring peers on debugging and code review while coordinating lab schedules for consistent instruction',
+        'Debugged 100+ logic and runtime issues in Python and C++, and authored guides on data structures and algorithms fundamentals',
+        'Taught arrays, linked lists, trees, and graphs with emphasis on correctness and time-space complexity'
       ],
-      technologies: ['JavaScript', 'HTML', 'CSS', 'RESTful APIs', 'Git', 'Docker', 'Agile'],
+      technologies: ['Python', 'C++', 'Data Structures', 'Algorithms', 'Debugging', 'Mentorship'],
       achievements: [
-        'Resolved 20+ tracked issues in production applications',
-        'Reduced deployment and runtime errors by 30%',
-        'Successfully shipped multiple features end-to-end'
+        'Led a TA team coordinating labs and peer mentorship',
+        'Resolved 100+ logic and runtime issues in Python and C++',
+        'Authored guides covering core data structures and algorithms'
       ]
     },
     {
       id: 'exp-3',
+      role: 'Software Engineer',
+      company: 'Berea College',
+      period: 'Jun. 2025 – Aug. 2025',
+      location: 'Berea, KY',
+      description: 'Shipped full-stack features and fixes using Git and Agile workflows across the college software development team.',
+      responsibilities: [
+        'Shipped 20+ full-stack features and fixes using Git and Agile workflows, with regular code reviews',
+        'Built responsive UIs in JavaScript, HTML, and CSS, and designed RESTful APIs with input validation and secure data handling',
+        'Developed Python backend services with MySQL and Docker, covering the full lifecycle from design to deployment'
+      ],
+      technologies: ['JavaScript', 'HTML', 'CSS', 'Python', 'MySQL', 'Docker', 'REST APIs', 'Git', 'Agile'],
+      achievements: [
+        'Shipped 20+ full-stack features and fixes',
+        'Designed RESTful APIs with validation and secure data handling',
+        'Delivered Python/MySQL services from design through deployment'
+      ]
+    },
+    {
+      id: 'exp-4',
       role: 'Student IT Support Specialist',
       company: 'Walters State Community College',
       period: 'Aug. 2022 – May 2024',
       location: 'Morristown, TN',
-      description: 'did it stuff',
+      description: 'Supported campus hardware and software systems for faculty and staff.',
       responsibilities: [
-        'Maintained and supported 150+ hardware and software systems, ensuring operational reliability and timely issue resolution.',
+        'Maintained and supported 150+ hardware and software systems, ensuring operational reliability and timely issue resolution',
         'Assisted IT staff in managing 200+ inventory items and logging assets for accurate resource tracking',
         'Resolved 50+ faculty and staff tech issues per semester, improving access to essential educational tools',
-        'Managed and updated inventory systems, increasing accuracy of hardware/software tracking by 20%',
-        'Provided technical support for various hardware and software platforms'
+        'Managed and updated inventory systems, increasing accuracy of hardware/software tracking by 20%'
       ],
       technologies: ['Windows', 'Hardware Troubleshooting', 'Software Support', 'Inventory Management', 'Help Desk'],
       achievements: [
@@ -1098,6 +1157,48 @@ const Windows7Desktop = () => {
       ]
     }
   ];
+
+  const leadership = [
+    {
+      id: 'lead-1',
+      role: 'Event Coordinator, Society of Hispanic Professional Engineers',
+      company: 'Berea College',
+      period: 'Mar. 2026 – Present',
+      location: 'Berea, KY',
+      description: 'Planned and executed chapter events promoting Hispanic representation and engagement in STEM.',
+      responsibilities: [
+        'Planned and executed chapter events promoting Hispanic representation and engagement in STEM fields',
+        'Coordinated logistics, outreach, and scheduling for technical workshops and community networking events',
+        'Supported peer mentorship initiatives connecting underrepresented students with professional development resources'
+      ],
+      technologies: ['Event Planning', 'Outreach', 'Mentorship', 'Community Building'],
+      achievements: [
+        'Organized technical workshops and networking events for the chapter',
+        'Strengthened outreach and peer mentorship for underrepresented students'
+      ]
+    },
+    {
+      id: 'lead-2',
+      role: 'Treasurer, ColorStack',
+      company: 'Berea College',
+      period: 'May 2025 – Present',
+      location: 'Berea, KY',
+      description: 'Managed chapter finances and programming while growing membership through outreach and mentorship.',
+      responsibilities: [
+        'Managed chapter finances and grew active membership by 40% through structured outreach and peer mentorship initiatives',
+        'Led coding workshops and study sessions, coordinating with campus partners and national ColorStack leadership',
+        'Collaborated with national leadership to support inclusive, community-focused STEM programming and events'
+      ],
+      technologies: ['Financial Management', 'Workshop Facilitation', 'Outreach', 'Mentorship'],
+      achievements: [
+        'Grew active membership by 40%',
+        'Led coding workshops and study sessions with campus partners',
+        'Partnered with national ColorStack leadership on inclusive STEM programming'
+      ]
+    }
+  ];
+
+  const openWindowCount = [isAboutMeOpen, isEmailOpen, isExperienceOpen, isLeadershipOpen, isProjectsOpen, isGalleryOpen].filter(Boolean).length;
 
   return (
     <>
@@ -1225,6 +1326,12 @@ const Windows7Desktop = () => {
             <img src="/images/folderw7.png" alt="MyExperience" style={{ width: '100%', height: '100%', objectFit: 'contain', pointerEvents: 'none', marginLeft: '8px', transform: 'scale(1.3)' }} />
           </div>
           <div className="desktop-icon-label">myexperience</div>
+        </div>
+        <div id="icon-myleadership" className="desktop-icon" style={{ position: 'absolute', top: 432, left: 16, zIndex: 10, pointerEvents: 'auto', cursor: 'default' }} onDoubleClick={() => { setIsLeadershipOpen(true); setIsLeadershipMinimized(false); setFocusedWindow('leadership'); }}>
+          <div className="desktop-icon-image" style={{ overflow: 'visible' }}>
+            <img src="/images/folderw7.png" alt="MyLeadership" style={{ width: '100%', height: '100%', objectFit: 'contain', pointerEvents: 'none', marginLeft: '8px', transform: 'scale(1.3)' }} />
+          </div>
+          <div className="desktop-icon-label">myleadership</div>
         </div>
         <div id="icon-myprojects" className="desktop-icon" style={{ position: 'absolute', top: 328, left: 16, zIndex: 10, pointerEvents: 'auto', cursor: 'default' }} onDoubleClick={() => { setIsProjectsOpen(true); setIsProjectsMinimized(false); setFocusedWindow('projects'); }}>
           <div className="desktop-icon-image" style={{ overflow: 'visible' }}>
@@ -1508,11 +1615,13 @@ const Windows7Desktop = () => {
             <div className="window-body has-space" style={{ height: 'calc(100% - 60px)', overflow: 'auto', fontFamily: 'Consolas, "Courier New", monospace' }}>
               <p>who is Julio?</p>
               <br />
-              <p>yea im julio, and im currently pursuing a bachelors in computer science at berea college. ive been keeping a 3.73 gpa and have made the deans list while here. before coming to berea, i completed my associates in computer science at walters state community college, where i graduated summa cum laude, was honored on both the presidents and deans lists, and became a member of phi theta kappa honor society.</p>
+              <p>yea im julio, and im currently pursuing a bachelors in computer science at berea college. ive been keeping a 3.72 gpa and have made the deans list while here. before coming to berea, i completed my associates in computer science at walters state community college, where i graduated summa cum laude, was honored on both the presidents and deans lists, and became a member of phi theta kappa honor society.</p>
               <br />
-              <p>i lwk do some other stuff too. like im currently the treasurer of colorstack here at berea and also work as a teaching assistant .</p>
+              <p>most recently i was a software engineer at the centers for medicare & medicaid services, working on modernizing enrollment tooling and contributing to open-source dsacms workflows. im also the data structures teaching assistant lead at berea.</p>
               <br />
-              <p>i also worked as a full-stack swe intern on the berea college software development team. i got to build and tweak web apps using html, css, javascript, and python, fix bugs, make things run smoother, and work with the team to manage code with git and docker.</p>
+              <p>outside of that i do leadership stuff too — im event coordinator for the society of hispanic professional engineers and treasurer of colorstack, where we grew membership and run workshops.</p>
+              <br />
+              <p>i also worked as a software engineer on the berea college software development team, shipping full-stack features with javascript, python, mysql, git, and docker.</p>
               <br />
               <p>i use a bunch of different languages, frameworks, and tools. i basically just like learning abt a bunch of different stuff. i also was originally gonna study music production! but ig thats it, so yea. send me an email if ya want.</p>
             </div>
@@ -1767,6 +1876,134 @@ const Windows7Desktop = () => {
             </div>
           </div>
         )}
+
+        {/* Leadership Window */}
+        {isLeadershipOpen && !isLeadershipMinimized && (
+          <div 
+            className="window glass active" 
+            onClick={() => setFocusedWindow('leadership')}
+            style={{ 
+              position: 'absolute', 
+              top: '50%', 
+              left: '50%', 
+              transform: 'translate(-50%, -50%)', 
+              width: '90%', 
+              maxWidth: '900px', 
+              height: '80vh', 
+              maxHeight: '600px', 
+              zIndex: focusedWindow === 'leadership' ? 100 : 50, 
+              pointerEvents: 'auto', 
+              animation: isLeadershipClosing ? 'windowSlideOut 0.3s ease-out forwards' : 'windowSlideIn 0.3s ease-out forwards',
+              opacity: focusedWindow === 'leadership' || focusedWindow === null ? 1 : 0.7,
+              transition: 'opacity 0.2s ease, z-index 0s'
+            }}
+          >
+            <div className="title-bar">
+              <div className="title-bar-text">🌟 leadership</div>
+              <div className="title-bar-controls">
+                <button aria-label="Minimize" onClick={handleMinimizeLeadership}></button>
+                <button aria-label="Maximize" disabled style={{ opacity: 0.5 }}></button>
+                <button aria-label="Close" onClick={handleCloseLeadership}></button>
+              </div>
+            </div>
+            <div className="window-body" style={{ color: '#000', height: 'calc(100% - 33px)', overflow: 'auto', padding: 0 }}>
+              <section className="tabs" style={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
+                <menu role="tablist" aria-label="Leadership Timeline">
+                  {leadership.map((lead, index) => (
+                    <button
+                      key={lead.id}
+                      role="tab"
+                      aria-controls={lead.id}
+                      aria-selected={activeLeadershipTab === lead.id}
+                      onClick={() => setActiveLeadershipTab(lead.id)}
+                    >
+                      {index === 0 ? 'Current' : lead.period.split(' – ')[0]}
+                    </button>
+                  ))}
+                </menu>
+
+                {leadership.map((lead) => (
+                  <article
+                    key={lead.id}
+                    role="tabpanel"
+                    id={lead.id}
+                    hidden={activeLeadershipTab !== lead.id}
+                    style={{ flex: 1, overflow: 'auto', display: activeLeadershipTab === lead.id ? 'flex' : 'none', flexDirection: 'column' }}
+                  >
+                    <div style={{ padding: '0.75rem', color: '#000', flex: 1 }}>
+                      <fieldset style={{ height: '100%', margin: 0 }}>
+                        <legend style={{ color: '#000' }}>{lead.company}</legend>
+                        
+                        <div style={{ marginBottom: '1rem' }}>
+                          <p style={{ fontSize: '1.1rem', fontWeight: 'bold', marginBottom: '0.25rem', color: '#000' }}>
+                            {lead.role}
+                          </p>
+                          <p style={{ fontSize: '0.9rem', color: '#000' }}>
+                            📅 {lead.period} • 📍 {lead.location}
+                          </p>
+                        </div>
+
+                        <p style={{ marginBottom: '1rem', lineHeight: '1.6', color: '#000' }}>
+                          {lead.description}
+                        </p>
+
+                        <details open>
+                          <summary style={{ color: '#000' }}>key responsibilities</summary>
+                          <ul className="tree-view" style={{ marginTop: '0.5rem' }}>
+                            {lead.responsibilities.map((item, index) => (
+                              <li key={index} style={{ color: '#000' }}>{item}</li>
+                            ))}
+                          </ul>
+                        </details>
+
+                        <details open style={{ marginTop: '1rem' }}>
+                          <summary style={{ color: '#000' }}>skills</summary>
+                          <div style={{ 
+                            display: 'flex', 
+                            flexWrap: 'wrap', 
+                            gap: '0.5rem', 
+                            marginTop: '0.5rem' 
+                          }}>
+                            {lead.technologies.map((tech, index) => (
+                              <button
+                                key={index}
+                                style={{
+                                  cursor: 'default',
+                                  pointerEvents: 'none'
+                                }}
+                              >
+                                {tech}
+                              </button>
+                            ))}
+                          </div>
+                        </details>
+
+                        <details open style={{ marginTop: '1rem' }}>
+                          <summary style={{ color: '#000' }}>key achievements</summary>
+                          <div className="group" style={{ marginTop: '0.5rem', maxWidth: '100%', overflow: 'hidden' }}>
+                            {lead.achievements.map((achievement, index) => (
+                              <div key={index} style={{ maxWidth: '100%' }}>
+                                <input
+                                  type="checkbox"
+                                  id={`achievement-${lead.id}-${index}`}
+                                  checked
+                                  readOnly
+                                />
+                                <label htmlFor={`achievement-${lead.id}-${index}`} style={{ color: '#000', wordWrap: 'break-word', whiteSpace: 'normal', maxWidth: 'calc(100% - 30px)', display: 'inline-block' }}>
+                                  {achievement}
+                                </label>
+                              </div>
+                            ))}
+                          </div>
+                        </details>
+                      </fieldset>
+                    </div>
+                  </article>
+                ))}
+              </section>
+            </div>
+          </div>
+        )}
         
         {/* Start Menu */}
 {isStartMenuOpen && (
@@ -1861,7 +2098,7 @@ const Windows7Desktop = () => {
           padding: '8px 0'
         }}>
           {/* Programs Section */}
-          {['aboutme.txt', 'my experience', 'my projects', 'send me an email', 'recycle bin', 'my gallery'].some(item => item.toLowerCase().includes(startMenuSearch.toLowerCase())) && (
+          {['aboutme.txt', 'my experience', 'my leadership', 'my projects', 'send me an email', 'recycle bin', 'my gallery'].some(item => item.toLowerCase().includes(startMenuSearch.toLowerCase())) && (
             <fieldset style={{ margin: '8px', padding: '8px' }}>
               <legend style={{ color: '#000', fontSize: '12px', fontWeight: 'bold' }}>Programs</legend>
               
@@ -1883,13 +2120,26 @@ const Windows7Desktop = () => {
                   <li 
                     role="menuitem" 
                     tabIndex={0}
-                    onClick={() => { setIsExperienceOpen(true); setFocusedWindow('experience'); setIsStartMenuOpen(false); setStartMenuSearch(''); }}
+                    onClick={() => { setIsExperienceOpen(true); setIsExperienceMinimized(false); setFocusedWindow('experience'); setIsStartMenuOpen(false); setStartMenuSearch(''); }}
                     style={{ cursor: 'pointer', paddingLeft: '28px' }}
                     onMouseEnter={(e) => e.currentTarget.style.background = 'rgba(100,150,255,0.15)'}
                     onMouseLeave={(e) => e.currentTarget.style.background = 'transparent'}
                   >
                     <img src="/images/folderw7.png" alt="" style={{ width: '16px', height: '16px', marginRight: '12px', verticalAlign: 'middle' }} />
                     <span style={{ verticalAlign: 'middle' }}>My Experience</span>
+                  </li>
+                )}
+                {'my leadership'.toLowerCase().includes(startMenuSearch.toLowerCase()) && (
+                  <li 
+                    role="menuitem" 
+                    tabIndex={0}
+                    onClick={() => { setIsLeadershipOpen(true); setIsLeadershipMinimized(false); setFocusedWindow('leadership'); setIsStartMenuOpen(false); setStartMenuSearch(''); }}
+                    style={{ cursor: 'pointer', paddingLeft: '28px' }}
+                    onMouseEnter={(e) => e.currentTarget.style.background = 'rgba(100,150,255,0.15)'}
+                    onMouseLeave={(e) => e.currentTarget.style.background = 'transparent'}
+                  >
+                    <img src="/images/folderw7.png" alt="" style={{ width: '16px', height: '16px', marginRight: '12px', verticalAlign: 'middle' }} />
+                    <span style={{ verticalAlign: 'middle' }}>My Leadership</span>
                   </li>
                 )}
                 {'my projects'.toLowerCase().includes(startMenuSearch.toLowerCase()) && (
@@ -1985,7 +2235,7 @@ const Windows7Desktop = () => {
           )}
 
           {/* No Results Message */}
-          {startMenuSearch && !['aboutme.txt', 'my experience', 'my projects', 'send me an email', 'recycle bin', 'my gallery', 'my github', 'my linkedin'].some(item => item.toLowerCase().includes(startMenuSearch.toLowerCase())) && (
+          {startMenuSearch && !['aboutme.txt', 'my experience', 'my leadership', 'my projects', 'send me an email', 'recycle bin', 'my gallery', 'my github', 'my linkedin'].some(item => item.toLowerCase().includes(startMenuSearch.toLowerCase())) && (
             <div style={{ padding: '20px', textAlign: 'center', color: '#666', fontSize: '13px' }}>
               No results found for &quot;{startMenuSearch}&quot;
             </div>
@@ -2111,12 +2361,12 @@ const Windows7Desktop = () => {
                       opacity: focusedWindow === 'aboutme' || focusedWindow === null ? 1 : 0.6,
                       transition: 'opacity 0.2s ease',
                       borderBottom: focusedWindow !== 'aboutme' && focusedWindow !== null ? '2px solid rgba(255, 255, 255, 0.5)' : 'none',
-                      minWidth: (isMobile || [isAboutMeOpen, isEmailOpen, isExperienceOpen, isProjectsOpen, isGalleryOpen].filter(Boolean).length >= 4) ? '32px' : 'auto',
+                      minWidth: (isMobile || openWindowCount >= 4) ? '32px' : 'auto',
                       justifyContent: 'center'
                     }}
                   >
-                    <img src="/images/txtwin7.png" alt="AboutMe" style={{ width: '20px', height: '20px', marginRight: (isMobile || [isAboutMeOpen, isEmailOpen, isExperienceOpen, isProjectsOpen, isGalleryOpen].filter(Boolean).length >= 4) ? '0' : '4px' }} />
-                    {!isMobile && [isAboutMeOpen, isEmailOpen, isExperienceOpen, isProjectsOpen, isGalleryOpen].filter(Boolean).length < 4 && <span>aboutme.txt</span>}
+                    <img src="/images/txtwin7.png" alt="AboutMe" style={{ width: '20px', height: '20px', marginRight: (isMobile || openWindowCount >= 4) ? '0' : '4px' }} />
+                    {!isMobile && openWindowCount < 4 && <span>aboutme.txt</span>}
                   </div>
                 )}
                 {isEmailOpen && (
@@ -2130,12 +2380,12 @@ const Windows7Desktop = () => {
                       opacity: focusedWindow === 'email' || focusedWindow === null ? 1 : 0.6,
                       transition: 'opacity 0.2s ease',
                       borderBottom: focusedWindow !== 'email' && focusedWindow !== null ? '2px solid rgba(255, 255, 255, 0.5)' : 'none',
-                      minWidth: (isMobile || [isAboutMeOpen, isEmailOpen, isExperienceOpen, isProjectsOpen, isGalleryOpen].filter(Boolean).length >= 4) ? '32px' : 'auto',
+                      minWidth: (isMobile || openWindowCount >= 4) ? '32px' : 'auto',
                       justifyContent: 'center'
                     }}
                   >
-                    <img src="/images/wlivemail7.png" alt="Email" style={{ width: '20px', height: '20px', marginRight: (isMobile || [isAboutMeOpen, isEmailOpen, isExperienceOpen, isProjectsOpen, isGalleryOpen].filter(Boolean).length >= 4) ? '0' : '4px' }} />
-                    {!isMobile && [isAboutMeOpen, isEmailOpen, isExperienceOpen, isProjectsOpen, isGalleryOpen].filter(Boolean).length < 4 && <span>send me an email</span>}
+                    <img src="/images/wlivemail7.png" alt="Email" style={{ width: '20px', height: '20px', marginRight: (isMobile || openWindowCount >= 4) ? '0' : '4px' }} />
+                    {!isMobile && openWindowCount < 4 && <span>send me an email</span>}
                   </div>
                 )}
                 {isExperienceOpen && (
@@ -2149,12 +2399,31 @@ const Windows7Desktop = () => {
                       opacity: focusedWindow === 'experience' || focusedWindow === null ? 1 : 0.6,
                       transition: 'opacity 0.2s ease',
                       borderBottom: focusedWindow !== 'experience' && focusedWindow !== null ? '2px solid rgba(255, 255, 255, 0.5)' : 'none',
-                      minWidth: (isMobile || [isAboutMeOpen, isEmailOpen, isExperienceOpen, isProjectsOpen, isGalleryOpen].filter(Boolean).length >= 4) ? '32px' : 'auto',
+                      minWidth: (isMobile || openWindowCount >= 4) ? '32px' : 'auto',
                       justifyContent: 'center'
                     }}
                   >
-                    <img src="/images/folderw7.png" alt="MyExperience" style={{ width: '20px', height: '20px', marginRight: (isMobile || [isAboutMeOpen, isEmailOpen, isExperienceOpen, isProjectsOpen, isGalleryOpen].filter(Boolean).length >= 4) ? '0' : '4px' }} />
-                    {!isMobile && [isAboutMeOpen, isEmailOpen, isExperienceOpen, isProjectsOpen, isGalleryOpen].filter(Boolean).length < 4 && <span>myexperience</span>}
+                    <img src="/images/folderw7.png" alt="MyExperience" style={{ width: '20px', height: '20px', marginRight: (isMobile || openWindowCount >= 4) ? '0' : '4px' }} />
+                    {!isMobile && openWindowCount < 4 && <span>myexperience</span>}
+                  </div>
+                )}
+                {isLeadershipOpen && (
+                  <div 
+                    key="leadership-taskbar" 
+                    className={focusedWindow === 'leadership' || focusedWindow === null ? "taskbar-app active" : "taskbar-app"}
+                    onClick={() => { setIsLeadershipMinimized(false); setFocusedWindow('leadership'); }}
+                    style={{
+                      animation: isLeadershipClosing ? 'taskbarAppSlideOut 0.3s ease-out forwards' : 'taskbarAppSlideIn 0.3s ease-out forwards',
+                      cursor: 'pointer',
+                      opacity: focusedWindow === 'leadership' || focusedWindow === null ? 1 : 0.6,
+                      transition: 'opacity 0.2s ease',
+                      borderBottom: focusedWindow !== 'leadership' && focusedWindow !== null ? '2px solid rgba(255, 255, 255, 0.5)' : 'none',
+                      minWidth: (isMobile || openWindowCount >= 4) ? '32px' : 'auto',
+                      justifyContent: 'center'
+                    }}
+                  >
+                    <img src="/images/folderw7.png" alt="MyLeadership" style={{ width: '20px', height: '20px', marginRight: (isMobile || openWindowCount >= 4) ? '0' : '4px' }} />
+                    {!isMobile && openWindowCount < 4 && <span>myleadership</span>}
                   </div>
                 )}
                 {isProjectsOpen && (
@@ -2168,12 +2437,12 @@ const Windows7Desktop = () => {
                       opacity: focusedWindow === 'projects' || focusedWindow === null ? 1 : 0.6,
                       transition: 'opacity 0.2s ease',
                       borderBottom: focusedWindow !== 'projects' && focusedWindow !== null ? '2px solid rgba(255, 255, 255, 0.5)' : 'none',
-                      minWidth: (isMobile || [isAboutMeOpen, isEmailOpen, isExperienceOpen, isProjectsOpen, isGalleryOpen].filter(Boolean).length >= 4) ? '32px' : 'auto',
+                      minWidth: (isMobile || openWindowCount >= 4) ? '32px' : 'auto',
                       justifyContent: 'center'
                     }}
                   >
-                    <img src="/images/folderw7.png" alt="MyProjects" style={{ width: '20px', height: '20px', marginRight: (isMobile || [isAboutMeOpen, isEmailOpen, isExperienceOpen, isProjectsOpen, isGalleryOpen].filter(Boolean).length >= 4) ? '0' : '4px' }} />
-                    {!isMobile && [isAboutMeOpen, isEmailOpen, isExperienceOpen, isProjectsOpen, isGalleryOpen].filter(Boolean).length < 4 && <span>myprojects</span>}
+                    <img src="/images/folderw7.png" alt="MyProjects" style={{ width: '20px', height: '20px', marginRight: (isMobile || openWindowCount >= 4) ? '0' : '4px' }} />
+                    {!isMobile && openWindowCount < 4 && <span>myprojects</span>}
                   </div>
                 )}
                 {isGalleryOpen && (
@@ -2187,12 +2456,12 @@ const Windows7Desktop = () => {
                       opacity: focusedWindow === 'gallery' || focusedWindow === null ? 1 : 0.6,
                       transition: 'opacity 0.2s ease',
                       borderBottom: focusedWindow !== 'gallery' && focusedWindow !== null ? '2px solid rgba(255, 255, 255, 0.5)' : 'none',
-                      minWidth: (isMobile || [isAboutMeOpen, isEmailOpen, isExperienceOpen, isProjectsOpen, isGalleryOpen].filter(Boolean).length >= 4) ? '32px' : 'auto',
+                      minWidth: (isMobile || openWindowCount >= 4) ? '32px' : 'auto',
                       justifyContent: 'center'
                     }}
                   >
-                    <img src="/images/gallerywin7.png" alt="Gallery" style={{ width: '20px', height: '20px', marginRight: (isMobile || [isAboutMeOpen, isEmailOpen, isExperienceOpen, isProjectsOpen, isGalleryOpen].filter(Boolean).length >= 4) ? '0' : '4px' }} />
-                    {!isMobile && [isAboutMeOpen, isEmailOpen, isExperienceOpen, isProjectsOpen, isGalleryOpen].filter(Boolean).length < 4 && <span>my gallery</span>}
+                    <img src="/images/gallerywin7.png" alt="Gallery" style={{ width: '20px', height: '20px', marginRight: (isMobile || openWindowCount >= 4) ? '0' : '4px' }} />
+                    {!isMobile && openWindowCount < 4 && <span>my gallery</span>}
                   </div>
                 )}
               </div>
