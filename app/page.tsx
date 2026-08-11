@@ -1475,7 +1475,7 @@ const Windows7Desktop = () => {
             className="welcome-balloon"
             style={{
               position: 'fixed',
-              bottom: '70px',
+              bottom: 'calc(40px + env(safe-area-inset-bottom, 0px) + 30px)',
               right: '20px',
               zIndex: 10000,
               pointerEvents: 'auto',
@@ -2011,7 +2011,7 @@ const Windows7Desktop = () => {
     className="window glass active"
     style={{
       position: 'fixed',
-      bottom: '40px',
+      bottom: 'calc(40px + env(safe-area-inset-bottom, 0px))',
       left: '0px',
       width: '420px',
       height: '500px',
